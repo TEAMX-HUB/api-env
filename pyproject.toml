@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "compax-api"
+version = "0.1.0"
+description = ""
+authors = ["blackprince001 <appiahboaduprince@gmail.com>"]
+readme = "README.md"
+packages = [{include = "compax_api"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[tool.poetry.group.docs.dependencies]
+mkdocstrings = {extras = ["python"], version = "^0.22.0"}
+mkdocs-material = "^9.1.16"
+mkdocs-gen-files = "^0.5.0"
+mkdocs-literate-nav = "^0.6.0"
+mkdocs-section-index = "^0.3.5"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.3.2"
+pytest-cov = "^4.1.0"
+black = "^23.3.0"
+pre-commit = "^3.3.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
