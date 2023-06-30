@@ -1,6 +1,14 @@
 # Compax FastAPI Backend
 
-## Quick Start
+## Contents
+- [Quick Start](#quick_start)
+- [Testing](#testing)
+- [Api Routes](#api_routes)
+- [File Structure](#file_structure)
+- [Built Using](#built_using)
+- [Team](#team)
+
+## Quick Start <a name = "quick_start"></a>
 
 - Clone the repository
 
@@ -38,7 +46,7 @@
 
   while you're in `/api-env`
 
-## Testing
+## Testing <a name = "testing"></a>
 
 To run the tests in the project:
 
@@ -48,10 +56,29 @@ To run the tests in the project:
   poetry install --with dev
   ```
 
-## Api Routes
+## Api Routes <a name = "api_routes"></a>
 
 App Routes will be placed here!
 
-## File Structure for Project
+## File Structure for Project <a name = "file_structure"></a>
 
 Project Structure will be update soon.
+
+
+##  Built Using <a name = "built_using"></a>
+- [FastAPI](https://fastapi.tiangolo.com/) - Python Framework
+- [Postgres](https://www.postgresql.org/) - Database
+- [Poetry](https://python-poetry.org/) - Python Package Manager
+- [Docker](https://www.docker.com/) - Containerization
+- [SqlAlchemy](https://www.sqlalchemy.org/) - ORM
+- [Alembic](https://alembic.sqlalchemy.org/en/latest/) - Database Migration
+- [Pytest](https://docs.pytest.org/en/6.2.x/) - Testing Framework
+
+
+##  Team <a name = "team"></a>
+- [@blackprince001](https://github.com/blackprince001)
+- [@RansfordGenesis](https://github.com/RansfordGenesis)
+- [@Benedicta-Asare](https://github.com/Benedicta-Asare)
+- [@jasper-tech](https://github.com/jasper-tech)
+- [@mkweeks](https://github.com/mkweeks)
+- [@1sreal](https://github.com/1sreal)
