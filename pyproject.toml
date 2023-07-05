@@ -8,13 +8,13 @@ packages = [{include = "compax_api"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-pydantic = "^1.10.9"
 sqlalchemy = "^2.0.16"
 uvicorn = "^0.22.0"
 passlib = "^1.7.4"
 bcrypt = "^4.0.1"
-python-dotenv = "0.19.2"
+python-dotenv = "^1.0.0"
 fastapi = "^0.99.1"
+pydantic = "1.10.11"
 
 
 [tool.poetry.group.docs.dependencies]
