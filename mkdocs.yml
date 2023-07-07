@@ -1,5 +1,0 @@
-site_name: Compax Backend Api 0.1.0
-theme: readthedocs
-plugins:
-  - search
-  - localsearch
