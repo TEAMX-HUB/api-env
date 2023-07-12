@@ -10,6 +10,7 @@ class Settings(BaseSettings):
     env_name: str = ""
     supabase_uri: str = ""
     supabase_key: str = ""
+    supabase_dsn: str = ""
 
     class Config:
         # allows the import of environment variables from .env
