@@ -1,5 +1,12 @@
 from fastapi import FastAPI
 
+from routes.admin import adminpoint
+from routes.building import buildingpoint
+from routes.classroom import classroompoint
+from routes.laboratory import labpoint
+from routes.office import officepoint
+from routes.user import userpoint
+
 app = FastAPI(
     title="Compax Api Backend",
     docs_url="/api/bare/docs",
@@ -11,3 +18,11 @@ app = FastAPI(
 @app.get("/")
 async def root():
     return {"Status": 200}
+
+
+app.include_router(userpoint)
+app.include_router(adminpoint)
+app.include_router(classroompoint)
+app.include_router(buildingpoint)
+app.include_router(labpoint)
+app.include_router(officepoint)
