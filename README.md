@@ -71,8 +71,6 @@ Project Structure will be update soon.
 - [Postgres](https://www.postgresql.org/) - Database
 - [Poetry](https://python-poetry.org/) - Python Package Manager
 - [Docker](https://www.docker.com/) - Containerization
-- [SqlAlchemy](https://www.sqlalchemy.org/) - ORM
-- [Alembic](https://alembic.sqlalchemy.org/en/latest/) - Database Migration
 - [Pytest](https://docs.pytest.org/en/6.2.x/) - Testing Framework
 
 ## Team <a name = "team"></a>
