@@ -19,7 +19,7 @@
 
 [Some Video for setting up Flask](https://www.youtube.com/watch?v=fsNeGqxC4PM)
 
-- go for raw sql with parameters over ORM provided by Supabase using SQLAlchemy
+- go for raw sql with parameters over ORM provided by Supabase using database driver
 - reflect on the database file generated from pgAdmin
 - revise models and check all the data provided are accurately schemed
 - migrate new database to Supabase locally, test and push to remote.
