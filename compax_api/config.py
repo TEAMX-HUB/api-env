@@ -4,13 +4,19 @@ from pathlib import Path
 from pydantic import BaseSettings
 
 base_env = Path("../.env")
+prod_env = Path("../prod.env")  # don't forget to set to prod.env when deploying
 
 
 class Settings(BaseSettings):
     env_name: str = ""
-    supabase_uri: str = ""
-    supabase_key: str = ""
-    supabase_dsn: str = ""
+    supabase_client_url: str = ""
+    supabase_client_key: str = ""
+    db_url: str = ""
+    db_name: str = ""
+    db_user: str = ""
+    db_port: int = 0
+    db_password: str = ""
+    db_host: str = ""
 
     class Config:
         # allows the import of environment variables from .env
