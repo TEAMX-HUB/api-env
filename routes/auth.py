@@ -7,7 +7,7 @@ config = get_settings()
 
 auth = APIRouter()
 
-url, key = config.supabase_uri, config.supabase_key
+url, key = config.supabase_client_url, config.supabase_client_key
 supabase: Client = create_client(supabase_url=url, supabase_key=key)
 
 
