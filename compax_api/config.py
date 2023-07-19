@@ -3,8 +3,9 @@ from pathlib import Path
 
 from pydantic import BaseSettings
 
-base_env = Path("../.env")
-prod_env = Path("../prod.env")  # don't forget to set to prod.env when deploying
+cwd = Path.cwd()
+base_env = cwd / ".env"
+prod_env = cwd / "prod.env"  # don't forget to set to prod.env when deploying
 
 
 class Settings(BaseSettings):
