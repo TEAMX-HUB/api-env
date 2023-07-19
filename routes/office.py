@@ -1,3 +1,3 @@
 from fastapi import APIRouter
 
-officepoint = APIRouter()
+office = APIRouter()

@@ -1,3 +1,3 @@
 from fastapi import APIRouter
 
-labpoint = APIRouter()
+lab = APIRouter()

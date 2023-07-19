@@ -1,3 +1,3 @@
 from fastapi import APIRouter
 
-userpoint = APIRouter()
+user = APIRouter()

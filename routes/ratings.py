@@ -1,3 +1,3 @@
 from fastapi import APIRouter
 
-ratingspoint = APIRouter()
+ratings = APIRouter()
