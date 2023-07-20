@@ -1,14 +1,14 @@
+from uuid import uuid4 as UUID
+
 from pydantic import BaseModel
 
 
-class RateBase(BaseModel):
-    pass
-
-
-# dont forget to add the rating value
-class RateCreate(RateBase):
-    pass
-
-
-class Rate(RateBase):
-    pass
+class Rating(BaseModel):
+    id: int
+    user_id: UUID
+    building_id: int | None
+    classroom_id: int | None
+    office_id: int | None
+    lab_id: int | None
+    comments: str
+    rate_value: int

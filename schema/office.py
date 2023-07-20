@@ -1,13 +1,11 @@
 from pydantic import BaseModel
 
 
-class OfficeBase(BaseModel):
-    pass
-
-
-class OfficeCreate(OfficeBase):
-    pass
-
-
-class Office(OfficeBase):
-    pass
+class Office(BaseModel):
+    id: int
+    floor_number: int | 0
+    image_url: str
+    geom: str
+    building_id: int
+    office_code: str
+    staff_personnel: str

@@ -1,13 +1,13 @@
 from pydantic import BaseModel
 
 
-class BuildingBase(BaseModel):
-    pass
-
-
-class BuidingCreate(BuildingBase):
-    pass
-
-
-class Building(BuildingBase):
-    pass
+class Building(BaseModel):
+    id: int
+    name: str
+    image_url: str
+    goem: str
+    building_id: int
+    building_type: str
+    n_floors: int | 0
+    n_classrooms: int | 0
+    n_labs: int | 0
