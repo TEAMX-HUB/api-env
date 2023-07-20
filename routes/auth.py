@@ -2,6 +2,7 @@ from fastapi import APIRouter
 from supabase import Client, create_client
 
 from compax_api.config import get_settings
+from compax_api.errors import InvalidCredentialsException
 from compax_api.security import Password
 from schema.user import AdminCreate, ExamOfficerCreate, UserCreate
 
@@ -38,7 +39,7 @@ async def sign_up(new_user: UserCreate):
 
     if auth_res:
         # handle any errors from this end
-        pass
+        raise InvalidCredentialsException
 
     # cater for sign_up on sign_up table
     data, count = await supabase.table("users").insert(details).execute()
