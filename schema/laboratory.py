@@ -1,13 +1,11 @@
 from pydantic import BaseModel
 
 
-class LaboratoryBase(BaseModel):
-    pass
-
-
-class LaboratoryCreate(LaboratoryBase):
-    pass
-
-
-class Laboratory(LaboratoryBase):
-    pass
+class Laboratory(BaseModel):
+    id: int
+    lab_reference: str
+    room_number: int | 0
+    floor_number: int | 0
+    image_url: str
+    geom: str
+    building_id: int
