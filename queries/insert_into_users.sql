@@ -1,0 +1,1 @@
+INSERT INTO public.users(id, username, student_reference, department, year_group, password, created_at, is_classrep, is_admin, is_deleted, is_exams_officer) values (%(id)s, %(username)s, %(student_reference)s, %(department)s, %(year_group)s, %(password)s, %(created_at)s, %(is_classrep)s, %(is_admin)s, %(is_deleted)s, %(is_exams_officer)s);
