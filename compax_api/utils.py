@@ -5,7 +5,7 @@ from psycopg import Connection
 queries_directory = Path.cwd() / "queries"
 
 
-def _insert_parse_and_execute(filename: Path, payload: tuple, conn: Connection):
+def _insert_parse_and_execute(filename: Path, payload: dict, conn: Connection):
     with open(queries_directory / filename) as d:
         data = d.read()
 
