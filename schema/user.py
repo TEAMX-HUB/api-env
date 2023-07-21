@@ -19,7 +19,10 @@ class UserBase(BaseModel):
 
 
 class UserCreate(UserBase):
+    is_classrep: bool = False
     is_admin: bool = False
+    is_deleted: bool = False
+    is_exams_officer: bool = False
 
 
 class AdminBase(UserBase):
@@ -27,7 +30,9 @@ class AdminBase(UserBase):
 
 
 class AdminCreate(AdminBase):
+    is_classrep: bool = False
     is_admin: bool = True
+    is_deleted: bool = False
     is_exams_officer: bool = False
 
 
@@ -36,5 +41,7 @@ class ExamOfficer(UserBase):
 
 
 class ExamOfficerCreate(ExamOfficer):
+    is_classrep: bool = False
     is_admin: bool = True
     is_exams_officer: bool = True
+    is_deleted: bool = False
