@@ -38,7 +38,7 @@ class UserNotFoundException(CompaxException):
         super().__init__(status_code=404, detail=detail)
 
 
-class InvalidCredentialsException(CompaxException):
+class AuthInvalidCredentialsException(CompaxException):
     def __init__(self):
         super().__init__(status_code=401, detail="Invalid credentials.")
 
