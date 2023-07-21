@@ -1,19 +1,18 @@
-import asyncpg
+import psycopg
 
 from .config import get_settings
 
 config = get_settings()
 
-database_credentials = config.dict()
+database_credentials: str = config.dict()["db_url"]
 
 
+# try caching the connection
 def get_db_conn():
-    with asyncpg.create_pool(
-        **database_credentials,
-        min_size=0,
-        max_size=200,
-    ) as pool:
-        yield pool
+    with psycopg.connect(
+        database_credentials,
+    ) as conn:
+        yield conn
 
 
 # connecting to the supabase database
