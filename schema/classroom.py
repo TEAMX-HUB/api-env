@@ -4,8 +4,8 @@ from pydantic import BaseModel
 class Classroom(BaseModel):
     id: int
     name: str
-    image_url: str
-    room_number: int | 0
-    floor_number: int | 0
+    image_url: list[str]
+    room_number: int
+    floor_number: int
     goem: str
     building_id: int
