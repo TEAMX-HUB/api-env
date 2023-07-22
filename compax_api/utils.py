@@ -19,7 +19,7 @@ async def _get_parse_and_execute(filename: Path, payload: tuple, conn: Connectio
     with open(queries_directory / filename) as d:
         data = d.read()
 
-    results = await conn.execute(data, payload)
+    results = await conn.execute(data, payload).fetchall()
     if results:
         return results
     return {"Failure": "Account creation failed!"}
