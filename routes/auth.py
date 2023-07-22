@@ -2,7 +2,8 @@ from fastapi import APIRouter, Depends
 from psycopg import Connection
 from supabase import Client, create_client
 
-import compax_api.utils
+import routes.admin
+import routes.user
 from compax_api.config import get_settings
 from compax_api.database import get_db_conn
 from compax_api.errors import AuthInvalidCredentialsException
@@ -18,9 +19,22 @@ supabase: Client = create_client(supabase_url=url, supabase_key=key)
 
 
 @auth.get("/auth/signin", tags=["auth"])
-async def sign_in(username: str, password: str):
+async def sign_in(
+    username: str, password: str, connection: Connection = Depends(get_db_conn)
+):
+    user = routes.user.get_user_by_username(username=username, connection=connection)
+
+    # extract user hashed password from GET
+    # handle errors from GET if user not found
+    if Password.verify(plain=password, hashed=""):
+        pass
+
     res = await supabase.auth.sign_in_with_password(
-        {"email": username, "password": Password.hash(password=password)}
+        {
+            "email": username,
+            "password": Password.hash(password=password),
+            "email_confirm": False,
+        }
     )
     return res
 
@@ -36,10 +50,7 @@ async def sign_up(new_user: UserCreate, connection: Connection = Depends(get_db_
     auth_response = _supabase_authenticate(new_user=new_user)
     extracted_id = auth_response.dict()["user"]["id"]
     new_user.id = extracted_id
-
-    compax_api.utils._insert_parse_and_execute(
-        filename="insert_into_users.sql", payload=new_user.dict(), conn=connection
-    )
+    routes.user.create_user(new_user, connection)
 
 
 def _supabase_authenticate(new_user: UserCreate):
@@ -61,10 +72,7 @@ async def sign_up_admin(
     auth_response = _supabase_authenticate(new_user=new_user)
     extracted_id = auth_response.dict()["user"]["id"]
     new_user.id = extracted_id
-
-    compax_api.utils._insert_parse_and_execute(
-        filename="insert_into_users.sql", payload=new_user.dict(), conn=connection
-    )
+    routes.admin.create_admin(new_user, connection)
 
 
 @auth.post("/auth/officer/signup", tags=["auth"])
@@ -74,7 +82,4 @@ async def sign_up_examofficer(
     auth_response = _supabase_authenticate(new_user=new_user)
     extracted_id = auth_response.dict()["user"]["id"]
     new_user.id = extracted_id
-
-    compax_api.utils._insert_parse_and_execute(
-        filename="insert_into_users.sql", payload=new_user.dict(), conn=connection
-    )
+    routes.admin.create_officer(new_user, connection)
