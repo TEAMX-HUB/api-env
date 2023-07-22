@@ -38,6 +38,18 @@ class UserNotFoundException(CompaxException):
         super().__init__(status_code=404, detail=detail)
 
 
+class UserReferenceFoundException(CompaxException):
+    def __init__(self, ref: int):
+        detail = f"User with Reference {int} not found."
+        super().__init__(status_code=404, detail=detail)
+
+
+class UserNameNotFoundException(CompaxException):
+    def __init__(self, username: str):
+        detail = f"User with name {username} not found."
+        super().__init__(status_code=404, detail=detail)
+
+
 class AuthInvalidCredentialsException(CompaxException):
     def __init__(self):
         super().__init__(status_code=401, detail="Invalid credentials.")
