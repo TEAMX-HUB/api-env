@@ -7,7 +7,7 @@ from pydantic import BaseModel
 class UserBase(BaseModel):
     id: UUID
     username: str
-    student_reference: int | str
+    student_reference: int
     department: str
     year_group: int
     password: str
