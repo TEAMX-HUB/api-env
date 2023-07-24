@@ -50,7 +50,12 @@ class UserNameNotFoundException(CompaxException):
 
 class AuthInvalidCredentialsException(CompaxException):
     def __init__(self):
-        super().__init__(status_code=401, detail="Invalid credentials.")
+        super().__init__(
+            status_code=401,
+            detail="Invalid credentials. "
+            + "User might exist. User with reference might exist. "
+            + "User year group might be Incorrect",
+        )
 
 
 class UnauthorizedException(CompaxException):
