@@ -15,11 +15,47 @@ def _insert_parse_and_execute(filename: Path, payload: dict, conn: Connection):
     # return {"Failure": "Account creation failed!"}
 
 
-async def _get_parse_and_execute(filename: Path, payload: tuple, conn: Connection):
+def _get_all_and_execute_params(filename: Path, payload: dict, conn: Connection):
     with open(queries_directory / filename) as d:
         data = d.read()
 
-    results = await conn.execute(data, payload).fetchall()
+    results = conn.execute(
+        data,
+        payload,
+    ).fetchall()
     if results:
         return results
-    return {"Failure": "Account creation failed!"}
+    return {"Failure": "No Results Found!"}
+
+
+def _get_one_and_execute_params(filename: Path, payload: dict, conn: Connection):
+    with open(queries_directory / filename) as d:
+        data = d.read()
+
+    results = conn.execute(data, payload).fetchone()
+
+    if results:
+        return results
+    return {"Failure": "No Results Found!"}
+
+
+def _get_all_and_execute(filename: Path, conn: Connection):
+    with open(queries_directory / filename) as d:
+        data = d.read()
+
+    results = conn.execute(data).fetchall()
+    if results:
+        return results
+    return {"Failure": "No Results Found!"}
+
+
+def _get_one_and_execute(filename: Path, conn: Connection):
+    with open(queries_directory / filename) as d:
+        data = d.read()
+
+    results = conn.execute(
+        data,
+    ).fetchone()
+    if results:
+        return results
+    return {"Failure": "No Results Found!"}
