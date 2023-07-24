@@ -1,4 +1,5 @@
 import psycopg
+from psycopg.rows import dict_row
 
 from .config import get_settings
 
@@ -11,6 +12,7 @@ database_credentials: str = config.dict()["db_url"]
 def get_db_conn():
     with psycopg.connect(
         database_credentials,
+        row_factory=dict_row,
     ) as conn:
         yield conn
 
