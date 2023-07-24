@@ -22,7 +22,7 @@ url, key = config.supabase_client_url, config.supabase_client_key
 supabase: Client = create_client(supabase_url=url, supabase_key=key)
 
 
-@auth.get("/auth/signin", tags=["auth"])
+@auth.get("/auth/signin", tags=["auth"], deprecated=True)
 async def sign_in(
     reference: str, password: str, connection: Connection = Depends(get_db_conn)
 ):
@@ -45,13 +45,13 @@ async def sign_in(
     return res
 
 
-@auth.post("/auth/signout", tags=["auth"])
+@auth.post("/auth/signout", tags=["auth"], deprecated=True)
 async def sign_out(username: str):
     res = supabase.auth.sign_out()
     return res
 
 
-@auth.post("/auth/signup", tags=["auth"])
+@auth.post("/auth/signup", tags=["auth"], deprecated=True)
 async def sign_up(new_user: UserCreate, connection: Connection = Depends(get_db_conn)):
     auth_response = _supabase_authenticate(new_user=new_user)
     extracted_id = auth_response.dict()["user"]["id"]
@@ -72,7 +72,7 @@ def _supabase_authenticate(new_user: UserCreate):
     return auth_response
 
 
-@auth.post("/auth/admin/signup", tags=["auth"])
+@auth.post("/auth/admin/signup", tags=["auth"], deprecated=True)
 async def sign_up_admin(
     new_user: AdminCreate, connection: Connection = Depends(get_db_conn)
 ):
@@ -82,7 +82,7 @@ async def sign_up_admin(
     routes.admin.create_admin(new_user, connection)
 
 
-@auth.post("/auth/officer/signup", tags=["auth"])
+@auth.post("/auth/officer/signup", tags=["auth"], deprecated=True)
 async def sign_up_examofficer(
     new_user: ExamOfficerCreate, connection: Connection = Depends(get_db_conn)
 ):
