@@ -3,6 +3,7 @@ from psycopg import Connection
 
 from compax_api.database import get_db_conn
 from schema.classroom import Classroom
+import compax_api.utils
 
 classroom = APIRouter()
 
@@ -15,21 +16,29 @@ classroom = APIRouter()
 
 @classroom.get("/classrooms/", tags=["classrooms"])
 async def get_all_classrooms(connection: Connection = Depends(get_db_conn)):
-    pass
+    res = compax_api.utils._get_all_and_execute("get_all_classrooms.sql", connection)
+    return res
 
 
 @classroom.get("/classroom/{classroom_id}", tags=["classrooms"])
 async def get_classroom(
     classroom_id: int, connection: Connection = Depends(get_db_conn)
 ):
-    pass
+    res = compax_api.utils._get_one_and_execute_params(
+        "get_classroom_with_id.sql", {"classroom_id": classroom_id}, connection
+    )
+    return res
 
 
-@classroom.put("/classrooms/{classroom_id}", tags=["classrooms"])
-async def update_classroom(
-    classroom_id: int, connection: Connection = Depends(get_db_conn)
+@classroom.get("/classroom/{classroom_id}", tags=["classrooms"])
+async def search_classroom_with_name(
+    name: str, connection: Connection = Depends(get_db_conn)
 ):
-    pass
+    name = f"%{name}%"
+    res = compax_api.utils._get_one_and_execute_params(
+        "get_classroom_with_name.sql", {"name": name}, connection
+    )
+    return res
 
 
 @classroom.post("/classrooms/new", tags=["classrooms"])

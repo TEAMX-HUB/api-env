@@ -2,6 +2,7 @@ from fastapi import APIRouter, Depends
 from psycopg import Connection
 
 from compax_api.database import get_db_conn
+import compax_api.utils
 from schema.laboratory import Laboratory
 
 lab = APIRouter()
@@ -9,12 +10,27 @@ lab = APIRouter()
 
 @lab.get("/labs/", tags=["labs"])
 async def get_all_labs(connection: Connection = Depends(get_db_conn)):
-    pass
+    res = compax_api.utils._get_all_and_execute("get_all_labs.sql", connection)
+    return res
 
 
-@lab.get("/labs/{lab_id}", tags=["labs"])
+@lab.get("/lab/{lab_id}", tags=["labs"])
 async def get_lab(lab_id: int, connection: Connection = Depends(get_db_conn)):
-    pass
+    res = compax_api.utils._get_one_and_execute_params(
+        "get_lab_with_id.sql", {"lab_id": lab_id}, connection
+    )
+    return res
+
+
+@lab.get("/lab/", tags=["labs"])
+async def search_lab_with_name(
+    name: str, connection: Connection = Depends(get_db_conn)
+):
+    name = f"%{name}%"
+    res = compax_api.utils._get_one_and_execute_params(
+        "get_lab_with_name.sql", {"name": name}, connection
+    )
+    return res
 
 
 @lab.put("/labs/{lab_id}", tags=["labs"])

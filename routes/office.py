@@ -2,6 +2,7 @@ from fastapi import APIRouter, Depends
 from psycopg import Connection
 
 from compax_api.database import get_db_conn
+import compax_api.utils
 from schema.office import Office
 
 office = APIRouter()
@@ -9,12 +10,27 @@ office = APIRouter()
 
 @office.get("/offices/", tags=["offices"])
 async def get_all_offices(connection: Connection = Depends(get_db_conn)):
-    pass
+    res = compax_api.utils._get_all_and_execute("get_all_offices.sql", connection)
+    return res
 
 
-@office.get("/offices/{office_id}", tags=["offices"])
+@office.get("/office/{office_id}", tags=["offices"])
 async def get_office(office_id: int, connection: Connection = Depends(get_db_conn)):
-    pass
+    res = compax_api.utils._get_one_and_execute_params(
+        "get_office_with_id.sql", {"office_id": office_id}, connection
+    )
+    return res
+
+
+@office.get("/office/", tags=["offices"])
+async def search_office_with_name(
+    name: str, connection: Connection = Depends(get_db_conn)
+):
+    name = f"%{name}%"
+    res = compax_api.utils._get_one_and_execute_params(
+        "get_office_with_name.sql", {"name": name}, connection
+    )
+    return res
 
 
 @office.put("/offices/{office_id}", tags=["offices"])
@@ -36,18 +52,18 @@ async def delete_office(office_id: int, connection: Connection = Depends(get_db_
 
 @office.get("/search/offices/")
 def query_offices_by_parameters(
-    name: str | None,
+    staff_personnel: str | None,
 ) -> dict[str, Office | list[Office]]:
     offices = get_all_offices()
 
-    if name is None:
+    if staff_personnel is None:
         return offices
 
     def check_item(office: Office, connection: Connection = Depends(get_db_conn)):
-        return (name is None or office.name == name,)
+        return (staff_personnel is None or office.staff_personnel in staff_personnel,)
 
     selection = [item for item in offices if check_item(item)]
     return {
-        "query": {"name": name},
+        "query": {"name": staff_personnel},
         "selection": selection,
     }

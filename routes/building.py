@@ -2,24 +2,46 @@ from fastapi import APIRouter, Depends
 from psycopg import Connection
 
 from compax_api.database import get_db_conn
+import compax_api.utils
 from schema.buildings import Building
 
 building = APIRouter()
 
 
+# TODO handle all errors after queries
+
+
 @building.get("/buildings/", tags=["buildings"])
 async def get_all_buildings(connection: Connection = Depends(get_db_conn)):
-    pass
+    res = compax_api.utils._get_all_and_execute("get_all_buildings.sql", connection)
+    return res
 
 
-@building.get("/buildings/{building_id}", tags=["buildings"])
+@building.get("/building/{building_id}", tags=["buildings"])
 async def get_building(building_id: int, connection: Connection = Depends(get_db_conn)):
-    pass
+    res = compax_api.utils._get_one_and_execute_params(
+        "get_building_with_id.sql", {"building_id": building_id}, connection
+    )
+    return res
+
+
+@building.get("/building/", tags=["buildings"])
+async def search_building_with_name(
+    name: str, connection: Connection = Depends(get_db_conn)
+):
+    name = f"%{name}%"
+    res = compax_api.utils._get_one_and_execute_params(
+        "get_building_with_name.sql", {"name": name}, connection
+    )
+    return res
 
 
 @building.put("/buildings/{building_id}", tags=["buildings"])
 async def update_building(
-    building_id: int, connection: Connection = Depends(get_db_conn)
+    building_id: int,
+    new_name: str = None,
+    image_url: str = None,
+    connection: Connection = Depends(get_db_conn),
 ):
     pass
 
