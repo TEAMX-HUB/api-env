@@ -1,1 +1,1 @@
-select * from public.users where username = (%s);
+select * from public.users where username = %(username)s;

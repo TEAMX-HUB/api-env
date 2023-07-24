@@ -1,1 +1,1 @@
-select * from public.users where id = (%s);
+select * from public.users where id = %(uuid)s;
