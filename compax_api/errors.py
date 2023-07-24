@@ -1,5 +1,3 @@
-from uuid import uuid4 as UUID
-
 from fastapi import HTTPException
 
 
@@ -33,8 +31,8 @@ class OfficeNotFoundException(CompaxException):
 
 
 class UserNotFoundException(CompaxException):
-    def __init__(self, user_id: UUID):
-        detail = f"User with ID {user_id} not found."
+    def __init__(self, message: str):
+        detail = f"{message}"
         super().__init__(status_code=404, detail=detail)
 
 
