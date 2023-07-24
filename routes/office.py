@@ -50,20 +50,20 @@ async def delete_office(office_id: int, connection: Connection = Depends(get_db_
     pass
 
 
-@office.get("/search/offices/")
-def query_offices_by_parameters(
-    staff_personnel: str | None,
-) -> dict[str, Office | list[Office]]:
-    offices = get_all_offices()
+# @office.get("/search/offices/")
+# def query_offices_by_parameters(
+#     staff_personnel: str | None,
+# ) -> dict[str, Office | list[Office]]:
+#     offices = get_all_offices()
 
-    if staff_personnel is None:
-        return offices
+#     if staff_personnel is None:
+#         return offices
 
-    def check_item(office: Office, connection: Connection = Depends(get_db_conn)):
-        return (staff_personnel is None or office.staff_personnel in staff_personnel,)
+#     def check_item(office: Office, connection: Connection = Depends(get_db_conn)):
+#         return (staff_personnel is None or office.staff_personnel in staff_personnel,)
 
-    selection = [item for item in offices if check_item(item)]
-    return {
-        "query": {"name": staff_personnel},
-        "selection": selection,
-    }
+#     selection = [item for item in offices if check_item(item)]
+#     return {
+#         "query": {"name": staff_personnel},
+#         "selection": selection,
+#     }

@@ -55,20 +55,20 @@ async def delete_classroom(
     pass
 
 
-@classroom.get("/search/classrooms/")
-def query_classrooms_by_parameters(
-    name: str | None,
-) -> dict[str, Classroom | list[Classroom]]:
-    classrooms = get_all_classrooms()
+# @classroom.get("/search/classrooms/")
+# def query_classrooms_by_parameters(
+#     name: str | None,
+# ) -> dict[str, Classroom | list[Classroom]]:
+#     classrooms = get_all_classrooms()
 
-    if name is None:
-        return classrooms
+#     if name is None:
+#         return classrooms
 
-    def check_item(classroom: Classroom, connection: Connection = Depends(get_db_conn)):
-        return (name is None or classroom.name == name,)
+#     def check_item(classroom: Classroom, connection: Connection = Depends(get_db_conn)):
+#         return (name is None or classroom.name == name,)
 
-    selection = [item for item in classrooms if check_item(item)]
-    return {
-        "query": {"name": name},
-        "selection": selection,
-    }
+#     selection = [item for item in classrooms if check_item(item)]
+#     return {
+#         "query": {"name": name},
+#         "selection": selection,
+#     }

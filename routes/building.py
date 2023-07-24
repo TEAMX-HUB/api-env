@@ -60,20 +60,20 @@ async def delete_building(
     pass
 
 
-@building.get("/search/buildings/")
-def query_buildings_by_parameters(
-    name: str | None,
-) -> dict[str, Building | list[Building]]:
-    buildings = get_all_buildings()
+# @building.get("/search/buildings/")
+# def query_buildings_by_parameters(
+#     name: str,
+# ) -> dict[str, Building | list[Building]]:
+#     buildings = get_all_buildings()
 
-    if name is None:
-        return buildings
+#     if name is None:
+#         return buildings
 
-    def check_item(building: Building, connection: Connection = Depends(get_db_conn)):
-        return (name is None or building.name == name,)
+#     def check_item(building: Building, connection: Connection = Depends(get_db_conn)):
+#         return (name is None or building.name == name,)
 
-    selection = [item for item in buildings if check_item(item)]
-    return {
-        "query": {"name": name},
-        "selection": selection,
-    }
+#     selection = [item for item in buildings if check_item(item)]
+#     return {
+#         "query": {"name": name},
+#         "selection": selection,
+#     }

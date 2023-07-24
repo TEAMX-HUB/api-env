@@ -50,20 +50,20 @@ async def delete_lab(lab_id: int, connection: Connection = Depends(get_db_conn))
     pass
 
 
-@lab.get("/search/labs/")
-def query_labs_by_parameters(
-    name: str | None,
-) -> dict[str, Laboratory | list[Laboratory]]:
-    labs = get_all_labs()
+# @lab.get("/search/labs/")
+# def query_labs_by_parameters(
+#     name: str | None,
+# ) -> dict[str, Laboratory | list[Laboratory]]:
+#     labs = get_all_labs()
 
-    if name is None:
-        return labs
+#     if name is None:
+#         return labs
 
-    def check_item(lab: Laboratory, connection: Connection = Depends(get_db_conn)):
-        return (name is None or lab.name == name,)
+#     def check_item(lab: Laboratory, connection: Connection = Depends(get_db_conn)):
+#         return (name is None or lab.name == name,)
 
-    selection = [item for item in labs if check_item(item)]
-    return {
-        "query": {"name": name},
-        "selection": selection,
-    }
+#     selection = [item for item in labs if check_item(item)]
+#     return {
+#         "query": {"name": name},
+#         "selection": selection,
+#     }
