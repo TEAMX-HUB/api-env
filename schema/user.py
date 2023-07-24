@@ -11,7 +11,7 @@ class UserBase(BaseModel):
     department: str
     year_group: int
     password: str
-    created_at: datetime | None
+    created_at: datetime
     is_classrep: bool
     is_admin: bool
     is_deleted: bool
