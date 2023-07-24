@@ -35,15 +35,29 @@ async def search_classroom_with_name(
     name: str, connection: Connection = Depends(get_db_conn)
 ):
     name = f"%{name}%"
-    res = compax_api.utils._get_one_and_execute_params(
+    res = compax_api.utils._get_all_and_execute_params(
         "get_classroom_with_name.sql", {"name": name}, connection
     )
     return res
 
 
+@classroom.get("/classrooms/{building_id}", tags=["classrooms"])
+async def get_all_classrooms_in_building(
+    building_id: int, connection: Connection = Depends(get_db_conn)
+):
+    pass
+
+
 @classroom.post("/classrooms/new", tags=["classrooms"])
 async def create_classroom(
     new_classroom: Classroom, connection: Connection = Depends(get_db_conn)
+):
+    pass
+
+
+@classroom.patch("/classroom/image/{classroom_id}", tags=["classrooms"])
+async def update_classsroom_image(
+    classroom_id: int, connection: Connection = Depends(get_db_conn)
 ):
     pass
 

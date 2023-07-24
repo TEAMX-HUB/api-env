@@ -24,17 +24,31 @@ async def get_office(office_id: int, connection: Connection = Depends(get_db_con
 
 @office.get("/office/", tags=["offices"])
 async def search_office_with_name(
-    name: str, connection: Connection = Depends(get_db_conn)
+    staff_personnel: str, connection: Connection = Depends(get_db_conn)
 ):
-    name = f"%{name}%"
-    res = compax_api.utils._get_one_and_execute_params(
-        "get_office_with_name.sql", {"name": name}, connection
+    staff_personnel = f"%{staff_personnel}%"
+    res = compax_api.utils._get_all_and_execute_params(
+        "get_office_with_name.sql", {"staff_personnel": staff_personnel}, connection
     )
     return res
 
 
+@office.get("/offices/{building_id}", tags=["offices"])
+async def get_all_offices_in_building(
+    building_id: int, connection: Connection = Depends(get_db_conn)
+):
+    pass
+
+
 @office.put("/offices/{office_id}", tags=["offices"])
 async def update_office(office_id: int, connection: Connection = Depends(get_db_conn)):
+    pass
+
+
+@office.patch("/office/image/{office_id}", tags=["offices"])
+async def update_office_image(
+    office_id: int, connection: Connection = Depends(get_db_conn)
+):
     pass
 
 

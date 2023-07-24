@@ -27,14 +27,26 @@ async def search_lab_with_name(
     name: str, connection: Connection = Depends(get_db_conn)
 ):
     name = f"%{name}%"
-    res = compax_api.utils._get_one_and_execute_params(
+    res = compax_api.utils._get_all_and_execute_params(
         "get_lab_with_name.sql", {"name": name}, connection
     )
     return res
 
 
+@lab.get("/labs/{building_id}", tags=["labs"])
+async def get_all_labs_in_building(
+    building_id: int, connection: Connection = Depends(get_db_conn)
+):
+    pass
+
+
 @lab.put("/labs/{lab_id}", tags=["labs"])
 async def update_lab(lab_id: int, connection: Connection = Depends(get_db_conn)):
+    pass
+
+
+@lab.patch("/labs/image/{lab_id}", tags=["labs"])
+async def update_lab_image(lab_id: int, connection: Connection = Depends(get_db_conn)):
     pass
 
 

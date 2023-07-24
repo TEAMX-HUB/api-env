@@ -20,7 +20,7 @@ def get_user_by_reference(
     reference: int, connection: Connection = Depends(get_db_conn)
 ):
     # create script to extract uuid
-    res = compax_api.utils._get_parse_and_execute(
+    res = compax_api.utils._get_one_and_execute_params(
         "get_user_reference.sql", {"student_reference": reference}, connection
     )
 
@@ -33,22 +33,21 @@ def get_user_by_reference(
 @user.get("/i/{uuid}", tags=["users"])
 async def get_user_by_uuid(uuid: UUID, connection: Connection = Depends(get_db_conn)):
     # create script to extract uuid
-    res = compax_api.utils._get_parse_and_execute(
+    res = compax_api.utils._get_one_and_execute_params(
         "get_user_uuid.sql", {"id": uuid}, connection
     )
 
     if res is None:
         raise UserNotFoundException(user_id=uuid)
 
-    # handle errors properly
-    return dict(res)
+    return res
 
 
 @user.get("/i/{username}", tags=["users"])
 async def get_user_by_username(
     username: str, connection: Connection = Depends(get_db_conn)
 ):
-    res = compax_api.utils._get_parse_and_execute_one(
+    res = compax_api.utils._get_one_and_execute_params(
         "get_user_username.sql", {"username": username}, connection
     )
 
