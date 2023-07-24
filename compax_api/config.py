@@ -3,7 +3,7 @@ from pathlib import Path
 
 from pydantic import BaseSettings
 
-cwd = Path.cwd()
+cwd = Path("/etc/secrets/")
 base_env = cwd / ".env"
 prod_env = cwd / "prod.env"  # don't forget to set to prod.env when deploying
 
