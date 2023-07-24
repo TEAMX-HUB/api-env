@@ -13,8 +13,8 @@ class AcademicEventWeek(BaseModel):
 class AcademicTrack(BaseModel):
     id: int
     semester: int
-    sem_starts: date
-    sem_ends: date
+    semester_start: date
+    semester_end: date
     academic_year: str
 
 
