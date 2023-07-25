@@ -58,6 +58,14 @@ class AuthInvalidCredentialsException(CompaxException):
         )
 
 
+class InvalidRatingException(CompaxException):
+    def __init__(self):
+        super().__init__(
+            status_code=401,
+            detail="Invalid credentials. Details Provided might incorrect!",
+        )
+
+
 class UnauthorizedException(CompaxException):
     def __init__(self):
         super().__init__(status_code=403, detail="Unauthorized access.")
