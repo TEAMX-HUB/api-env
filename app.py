@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from routes.admin import admin
 from routes.auth import auth
@@ -15,6 +16,16 @@ app = FastAPI(
     docs_url="/api/bare/docs",
     version="0.1.0",
     description="Software Engineering Project",
+)
+
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 
