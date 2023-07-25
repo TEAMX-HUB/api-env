@@ -23,7 +23,7 @@ async def get_all_schedule(connection: Connection = Depends(get_db_conn)):
     return res
 
 
-@schedule.get("/schedule/{weekday}", tags=["schedule"])
+@schedule.get("/schedule/day/{weekday}", tags=["schedule"])
 async def get_all_schedule_for_day(
     weekday: str, connection: Connection = Depends(get_db_conn)
 ):
@@ -33,7 +33,7 @@ async def get_all_schedule_for_day(
     return res
 
 
-@schedule.get("/schedule/{weekday}", tags=["schedule"])
+@schedule.get("/schedule/all/{weekday}", tags=["schedule"])
 async def get_schedule_all_for_session(
     weekday: str,
     start_time: time,
@@ -48,7 +48,7 @@ async def get_schedule_all_for_session(
     return res
 
 
-@schedule.get("/schedule/{weekday}", tags=["schedule"])
+@schedule.get("/i/schedule/day/{weekday}", tags=["schedule"])
 async def get_schedule_day_with_user_data(
     year_group: int,
     department: str,
@@ -58,6 +58,7 @@ async def get_schedule_day_with_user_data(
     res = compax_api.utils._get_all_and_execute_params(
         "get_schedule_with_user_data.sql",
         {"weekday": weekday, "year_group": year_group, "department": department},
+        connection,
     )
     return res
 
@@ -71,5 +72,6 @@ async def get_schedule_with_user_data(
     res = compax_api.utils._get_all_and_execute_params(
         "get_schedule_with_user_data.sql",
         {"year_group": year_group, "department": department},
+        connection,
     )
     return res
