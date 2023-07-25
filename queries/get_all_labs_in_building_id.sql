@@ -9,4 +9,4 @@ select building.id                                                as building_id
        ST_Y(ST_Transform(ST_SetSRID(lab.geom, 32630), 4326))    as lab_latitude
 from public.laboratories lab
          left join buildings building on lab.building_id = building.id
-where building.id = %(lab_id)s;
+where building.id = %(building_id)s;
