@@ -21,7 +21,7 @@ async def get_rating_for_classroom(
     classroom_id: int, connection: Connection = Depends(get_db_conn)
 ):
     res = compax_api.utils._get_one_and_execute_params(
-        "get_all_ratings_for_classroom.sql", {"classroom_id": classroom_id}, connection
+        "get_all_ratings_classroom.sql", {"classroom_id": classroom_id}, connection
     )
     return res
 
@@ -31,7 +31,7 @@ async def get_rating_for_lab(
     lab_id: int, connection: Connection = Depends(get_db_conn)
 ):
     res = compax_api.utils._get_one_and_execute_params(
-        "get_all_ratings_for_lab_id.sql", {"lab_id": lab_id}, connection
+        "get_all_ratings_lab.sql", {"lab_id": lab_id}, connection
     )
     return res
 
@@ -41,7 +41,7 @@ async def get_rating_for_building(
     building_id: int, connection: Connection = Depends(get_db_conn)
 ):
     res = compax_api.utils._get_one_and_execute_params(
-        "get_all_ratings_for_building.sql", {"building": building_id}, connection
+        "get_all_ratings_building.sql", {"building": building_id}, connection
     )
     return res
 

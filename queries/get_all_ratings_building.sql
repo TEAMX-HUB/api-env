@@ -1,4 +1,4 @@
-select user_id,
+select
        comments,
        rate_value,
        b.name as building_name,
