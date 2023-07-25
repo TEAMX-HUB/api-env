@@ -59,3 +59,15 @@ def _get_one_and_execute(filename: Path, conn: Connection):
     if results:
         return results
     return {"Failure": "No Results Found!"}
+
+
+def _update_and_execute(filename: Path, conn: Connection):
+    with open(queries_directory / filename) as d:
+        data = d.read()
+
+    results = conn.execute(
+        data,
+    )
+    if results:
+        return results
+    return {"Failure": "No Results Found!"}
