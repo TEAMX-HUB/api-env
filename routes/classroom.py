@@ -41,13 +41,6 @@ async def search_classroom_with_name(
     return res
 
 
-@classroom.get("/classrooms/{building_id}", tags=["classrooms"])
-async def get_all_classrooms_in_building(
-    building_id: int, connection: Connection = Depends(get_db_conn)
-):
-    pass
-
-
 @classroom.post("/classrooms/new", tags=["classrooms"])
 async def create_classroom(
     new_classroom: Classroom, connection: Connection = Depends(get_db_conn)

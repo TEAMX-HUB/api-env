@@ -33,13 +33,6 @@ async def search_lab_with_name(
     return res
 
 
-@lab.get("/labs/{building_id}", tags=["labs"])
-async def get_all_labs_in_building(
-    building_id: int, connection: Connection = Depends(get_db_conn)
-):
-    pass
-
-
 @lab.put("/labs/{lab_id}", tags=["labs"])
 async def update_lab(lab_id: int, connection: Connection = Depends(get_db_conn)):
     pass

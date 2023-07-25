@@ -53,6 +53,42 @@ async def update_building_image(
     pass
 
 
+@building.get("/building/{building_id}/classrooms", tags=["buildings"])
+async def get_all_classrooms_in_building(
+    building_id: int, connection: Connection = Depends(get_db_conn)
+):
+    res = compax_api.utils._get_all_and_execute_params(
+        "get_all_classrooms_in_building_id.sql",
+        {"building_id": building_id},
+        connection,
+    )
+    return res
+
+
+@building.get("/building/{building_id}/labs", tags=["buildings"])
+async def get_all_labs_in_building(
+    building_id: int, connection: Connection = Depends(get_db_conn)
+):
+    res = compax_api.utils._get_all_and_execute_params(
+        "get_all_labs_in_building_id.sql",
+        {"building_id": building_id},
+        connection,
+    )
+    return res
+
+
+@building.get("/building/{building_id}/offices", tags=["buildings"])
+async def get_all_offices_in_building(
+    building_id: int, connection: Connection = Depends(get_db_conn)
+):
+    res = compax_api.utils._get_all_and_execute_params(
+        "get_all_office_in_building_id.sql",
+        {"building_id": building_id},
+        connection,
+    )
+    return res
+
+
 @building.post("/buildings/new", tags=["buildings"])
 async def create_building(
     new_building: Building, connection: Connection = Depends(get_db_conn)

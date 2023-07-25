@@ -33,13 +33,6 @@ async def search_office_with_name(
     return res
 
 
-@office.get("/offices/{building_id}", tags=["offices"])
-async def get_all_offices_in_building(
-    building_id: int, connection: Connection = Depends(get_db_conn)
-):
-    pass
-
-
 @office.put("/offices/{office_id}", tags=["offices"])
 async def update_office(office_id: int, connection: Connection = Depends(get_db_conn)):
     pass
