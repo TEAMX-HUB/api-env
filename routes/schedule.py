@@ -48,7 +48,7 @@ async def get_schedule_all_for_session(
     return res
 
 
-@schedule.get("/i/schedule/day/{weekday}", tags=["schedule"])
+@schedule.get("/i/schedule/day/", tags=["schedule"])
 async def get_schedule_day_with_user_data(
     year_group: int,
     department: str,
@@ -56,8 +56,34 @@ async def get_schedule_day_with_user_data(
 ):
     weekday = WEEKDAYS[datetime.now().weekday()]
     res = compax_api.utils._get_all_and_execute_params(
-        "get_schedule_with_user_data.sql",
+        "get_schedule_day_with_user_data.sql",
         {"weekday": weekday, "year_group": year_group, "department": department},
+        connection,
+    )
+    return res
+
+
+@schedule.get("/schedule/{classroom_id}", tags=["schedule"])
+async def get_schedule_for_classroom(
+    classroom_id: int, connection: Connection = Depends(get_db_conn)
+):
+    weekday = WEEKDAYS[datetime.now().weekday()]
+    res = compax_api.utils._get_all_and_execute_params(
+        "get_schedule_for_classroom.sql",
+        {"weekday": weekday, "classroom_id": classroom_id},
+        connection,
+    )
+    return res
+
+
+@schedule.get("/schedule/{lab_id}", tags=["schedule"])
+async def get_schedule_for_lab(
+    lab_id: int, connection: Connection = Depends(get_db_conn)
+):
+    weekday = WEEKDAYS[datetime.now().weekday()]
+    res = compax_api.utils._get_all_and_execute_params(
+        "get_schedule_for_lab.sql",
+        {"weekday": weekday, "lab_id": lab_id},
         connection,
     )
     return res
