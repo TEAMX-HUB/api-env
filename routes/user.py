@@ -1,4 +1,4 @@
-from uuid import UUID, uuid4
+from uuid import UUID
 
 from fastapi import APIRouter, Depends
 from psycopg import Connection
@@ -32,7 +32,9 @@ def get_user_by_reference(
 
 
 @user.get("/i/{uuid}", tags=["users"])
-async def get_user_by_uuid(uuid: UUID, connection: Connection = Depends(get_db_conn)):
+async def get_user_by_uuid(
+    uuid: UUID, connection: Connection = Depends(get_db_conn), deprecated=True
+):
     res = compax_api.utils._get_one_and_execute_params(
         "get_user_uuid.sql", {"id": uuid}, connection
     )
@@ -45,7 +47,7 @@ async def get_user_by_uuid(uuid: UUID, connection: Connection = Depends(get_db_c
 
 @user.get("/i/{username}", tags=["users"])
 async def get_user_by_username(
-    username: str, connection: Connection = Depends(get_db_conn)
+    username: str, connection: Connection = Depends(get_db_conn), deprecated=True
 ):
     res = compax_api.utils._get_one_and_execute_params(
         "get_user_username.sql", {"username": username}, connection
@@ -61,9 +63,6 @@ async def get_user_by_username(
 async def create_user(
     new_user: UserCreate, connection: Connection = Depends(get_db_conn)
 ):
-    new_user.id = uuid4()
-    new_user.username += "@st.knust.edu.gh"
-    new_user.password = Password.hash(password=new_user.password)
     results = compax_api.utils._insert_one_and_execute_params(
         filename="insert_into_users.sql", payload=new_user.dict(), conn=connection
     )
@@ -72,7 +71,7 @@ async def create_user(
     return results
 
 
-@user.get("/i/pd_check/{reference}", tags=["users"])
+@user.get("/i/pd_check/{reference}", tags=["users"], deprecated=True)
 async def check_user_validity(
     reference: int, password: str, connection: Connection = Depends(get_db_conn)
 ):
