@@ -31,9 +31,10 @@ def get_user_by_reference(
     return res
 
 
-@user.get("/i/{uuid}", tags=["users"])
+@user.get("/i/{uuid}", tags=["users"], deprecated=True)
 async def get_user_by_uuid(
-    uuid: UUID, connection: Connection = Depends(get_db_conn), deprecated=True
+    uuid: UUID,
+    connection: Connection = Depends(get_db_conn),
 ):
     res = compax_api.utils._get_one_and_execute_params(
         "get_user_uuid.sql", {"id": uuid}, connection
@@ -45,9 +46,10 @@ async def get_user_by_uuid(
     return res
 
 
-@user.get("/i/{username}", tags=["users"])
+@user.get("/i/{username}", tags=["users"], deprecated=True)
 async def get_user_by_username(
-    username: str, connection: Connection = Depends(get_db_conn), deprecated=True
+    username: str,
+    connection: Connection = Depends(get_db_conn),
 ):
     res = compax_api.utils._get_one_and_execute_params(
         "get_user_username.sql", {"username": username}, connection
