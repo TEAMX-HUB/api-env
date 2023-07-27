@@ -1,15 +1,10 @@
 # Compax FastAPI Backend
 
-## Contents
+This Readne is to only aid you set up a development workspace on your choice editing tools.
 
-- [Quick Start](#quick_start)
-- [Testing](#testing)
-- [Api Routes](#api_routes)
-- [File Structure](#file_structure)
-- [Built Using](#built_using)
-- [Team](#team)
+Access full extensive documentation here! [Documentation](https://teamx-hub.github.io/Compax-docs/)
 
-## Quick Start <a name = "quick_start"></a>
+## Quick Start
 
 - Clone the repository
 
@@ -47,7 +42,7 @@
 
   while you're in `/api-env`
 
-## Testing <a name = "testing"></a>
+## Testing
 
 To run the tests in the project:
 
@@ -57,27 +52,97 @@ To run the tests in the project:
   poetry install --with dev
   ```
 
-## Api Routes <a name = "api_routes"></a>
+## Project Structure
 
-App Routes will be placed here!
+```console
+.
+├── app.py
+├── compax_api
+│   ├── config.py
+│   ├── database.py
+│   ├── errors.py
+│   ├── __init__.py
+│   ├── security.py
+│   └── utils.py
+├── Dockerfile
+├── LICENSE
+├── poetry.lock
+├── prod.env
+├── pyproject.toml
+├── queries
+│   ├── get_all_buildings.sql
+│   ├── get_all_classroom_in_building_name.sql
+│   ├── get_all_classrooms_in_building_id.sql
+│   ├── get_all_classrooms.sql
+│   ├── get_all_labs_in_building_id.sql
+│   ├── get_all_labs_in_building_name.sql
+│   ├── get_all_labs.sql
+│   ├── get_all_offices_in_building_id.sql
+│   ├── get_all_offices.sql
+│   ├── get_all_ratings_building.sql
+│   ├── get_all_ratings_classroom.sql
+│   ├── get_all_ratings_lab.sql
+│   ├── get_all_ratings_office.sql
+│   ├── get_all_ratings.sql
+│   ├── get_all_schedule.sql
+│   ├── get_building_with_id.sql
+│   ├── get_building_with_name.sql
+│   ├── get_classroom_with_id.sql
+│   ├── get_classroom_with_name.sql
+│   ├── get_lab_with_id.sql
+│   ├── get_lab_with_name.sql
+│   ├── get_office_with_id.sql
+│   ├── get_office_with_name.sql
+│   ├── get_schedule_all_for_day.sql
+│   ├── get_schedule_all_for_session.sql
+│   ├── get_schedule_day_with_classes.sql
+│   ├── get_schedule_day_with_user_data.sql
+│   ├── get_schedule_for_classroom.sql
+│   ├── get_schedule_for_lab.sql
+│   ├── get_schedule_with_user_data.sql
+│   ├── get_user_reference.sql
+│   ├── get_user_username.sql
+│   ├── get_user_uuid.sql
+│   ├── insert_into_ratings.sql
+│   ├── insert_into_users.sql
+│   └── update_ratings_comments.sql
+├── README.md
+├── requirements.txt
+├── routes
+│   ├── admin.py
+│   ├── auth.py
+│   ├── building.py
+│   ├── classroom.py
+│   ├── __init__.py
+│   ├── laboratory.py
+│   ├── office.py
+│   ├── ratings.py
+│   ├── schedule.py
+│   └── user.py
+├── schema
+│   ├── buildings.py
+│   ├── classroom.py
+│   ├── __init__.py
+│   ├── laboratory.py
+│   ├── office.py
+│   ├── ratings.py
+│   ├── schedule.py
+│   └── user.py
+├── tests
+│   ├── conftest.py
+│   ├── __init__.py
+│   ├── test_bucket.py
+│   ├── test_database_connection.py
+│   └── test_insertion.py
+└── TODO.md
 
-## File Structure for Project <a name = "file_structure"></a>
+6 directories, 74 files
+```
 
-Project Structure will be update soon.
-
-## Built Using <a name = "built_using"></a>
+## Built Using
 
 - [FastAPI](https://fastapi.tiangolo.com/) - Python Framework
 - [Postgres](https://www.postgresql.org/) - Database
 - [Poetry](https://python-poetry.org/) - Python Package Manager
 - [Docker](https://www.docker.com/) - Containerization
 - [Pytest](https://docs.pytest.org/en/6.2.x/) - Testing Framework
-
-## Team <a name = "team"></a>
-
-- [@blackprince001](https://github.com/blackprince001)
-- [@RansfordGenesis](https://github.com/RansfordGenesis)
-- [@Benedicta-Asare](https://github.com/Benedicta-Asare)
-- [@jasper-tech](https://github.com/jasper-tech)
-- [@mkweeks](https://github.com/mkweeks)
-- [@1sreal](https://github.com/1sreal)
