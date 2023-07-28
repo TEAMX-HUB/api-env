@@ -28,18 +28,20 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+prefix = "/api/v1"
+
 
 @app.get("/")
 async def root():
     return {"Status": 200}
 
 
-app.include_router(user)
-app.include_router(admin)
-app.include_router(auth)
-app.include_router(classroom)
-app.include_router(building)
-app.include_router(lab)
-app.include_router(office)
-app.include_router(schedule)
-app.include_router(ratings)
+app.include_router(user, prefix=prefix)
+app.include_router(admin, prefix=prefix)
+app.include_router(auth, prefix=prefix)
+app.include_router(classroom, prefix=prefix)
+app.include_router(building, prefix=prefix)
+app.include_router(lab, prefix=prefix)
+app.include_router(office, prefix=prefix)
+app.include_router(schedule, prefix=prefix)
+app.include_router(ratings, prefix=prefix)
