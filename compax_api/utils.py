@@ -9,7 +9,7 @@ def _insert_one_and_execute_params(filename: Path, payload: dict, conn: Connecti
     with open(queries_directory / filename) as d:
         data = d.read()
 
-    results = conn.execute(f"""{data}""", payload)
+    results = conn.execute(data, payload)
     if results:
         return {"Success": "Insert Successful!"}
     return {"Failure": "Insert Successful!"}

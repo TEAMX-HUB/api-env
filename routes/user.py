@@ -68,7 +68,7 @@ async def create_user(
     results = compax_api.utils._insert_one_and_execute_params(
         filename="insert_into_users.sql", payload=new_user.dict(), conn=connection
     )
-    if results:
+    if results is None:
         raise AuthInvalidCredentialsException
     return results
 
