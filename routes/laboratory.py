@@ -22,7 +22,7 @@ async def get_lab(lab_id: int, connection: Connection = Depends(get_db_conn)):
     return res
 
 
-@lab.get("/lab/", tags=["labs"])
+@lab.get("/search/labs/", tags=["labs"])
 async def search_lab_with_name(
     lab_reference: str, connection: Connection = Depends(get_db_conn)
 ):

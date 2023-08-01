@@ -25,7 +25,7 @@ async def get_building(building_id: int, connection: Connection = Depends(get_db
     return res
 
 
-@building.get("/building/", tags=["buildings"])
+@building.get("/search/buildings/", tags=["buildings"])
 async def search_building_with_name(
     name: str, connection: Connection = Depends(get_db_conn)
 ):

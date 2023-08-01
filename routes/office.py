@@ -22,7 +22,7 @@ async def get_office(office_id: int, connection: Connection = Depends(get_db_con
     return res
 
 
-@office.get("/office/", tags=["offices"])
+@office.get("/search/offices/", tags=["offices"])
 async def search_office_with_name(
     staff_personnel: str, connection: Connection = Depends(get_db_conn)
 ):

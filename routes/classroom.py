@@ -30,7 +30,7 @@ async def get_classroom(
     return res
 
 
-@classroom.get("/classroom/", tags=["classrooms"])
+@classroom.get("/search/classrooms/", tags=["classrooms"])
 async def search_classroom_with_name(
     name: str, connection: Connection = Depends(get_db_conn)
 ):
