@@ -63,7 +63,7 @@ async def get_schedule_day_with_user_data(
     return res
 
 
-@schedule.get("/schedule/{classroom_id}", tags=["schedule"])
+@schedule.get("/schedule/class/{classroom_id}", tags=["schedule"])
 async def get_schedule_for_classroom(
     classroom_id: int, connection: Connection = Depends(get_db_conn)
 ):
@@ -76,7 +76,20 @@ async def get_schedule_for_classroom(
     return res
 
 
-@schedule.get("/schedule/{lab_id}", tags=["schedule"])
+@schedule.get("/schedule/building/{building_id}", tags=["schedule"])
+async def get_schedule_for_building(
+    building_id: int, connection: Connection = Depends(get_db_conn)
+):
+    weekday = WEEKDAYS[datetime.now().weekday()]
+    res = compax_api.utils._get_all_and_execute_params(
+        "get_schedule_for_building.sql",
+        {"weekday": weekday, "building_id": building_id},
+        connection,
+    )
+    return res
+
+
+@schedule.get("/schedule/lab/{lab_id}", tags=["schedule"])
 async def get_schedule_for_lab(
     lab_id: int, connection: Connection = Depends(get_db_conn)
 ):
