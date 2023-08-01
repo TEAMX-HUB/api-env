@@ -24,9 +24,9 @@ async def get_lab(lab_id: int, connection: Connection = Depends(get_db_conn)):
 
 @lab.get("/search/labs/", tags=["labs"])
 async def search_lab_with_name(
-    lab_reference: str, connection: Connection = Depends(get_db_conn)
+    name: str, connection: Connection = Depends(get_db_conn)
 ):
-    name = f"%{lab_reference}%"
+    name = f"%{name}%"
     res = compax_api.utils._get_all_and_execute_params(
         "get_lab_with_name.sql", {"name": name}, connection
     )

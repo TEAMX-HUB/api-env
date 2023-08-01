@@ -24,9 +24,9 @@ async def get_office(office_id: int, connection: Connection = Depends(get_db_con
 
 @office.get("/search/offices/", tags=["offices"])
 async def search_office_with_name(
-    staff_personnel: str, connection: Connection = Depends(get_db_conn)
+    name: str, connection: Connection = Depends(get_db_conn)
 ):
-    staff_personnel = f"%{staff_personnel}%"
+    staff_personnel = f"%{name}%"
     res = compax_api.utils._get_all_and_execute_params(
         "get_office_with_name.sql", {"staff_personnel": staff_personnel}, connection
     )
