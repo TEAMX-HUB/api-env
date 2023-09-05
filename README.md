@@ -1,6 +1,10 @@
 # Compax FastAPI Backend
 
-This Readne is to only aid you set up a development workspace on your choice editing tools.
+# Statistics
+
+![Alt](https://repobeats.axiom.co/api/embed/6516b746b5ff36f07db8353792fe085c6517d9eb.svg "Repobeats analytics image")
+
+This Readme is to only aid you set up a development workspace on your choice editing tools.
 
 Access full extensive documentation here! [Documentation](https://teamx-hub.github.io/Compax-docs/)
 
